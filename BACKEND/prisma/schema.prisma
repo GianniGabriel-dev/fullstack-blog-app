@@ -1,0 +1,35 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  userId       Int             @id @default(autoincrement())
+  username     String          @db.VarChar(100)
+  userPassword String          @db.VarChar(250)
+  messages     MessageOfPost[] // relación 1:N con mensajes
+}
+
+model BlogPost {
+  postId     Int             @id @default(autoincrement())
+  title      String         @db.VarChar(300)
+  createdAt  DateTime        @default(now())
+  messagePost String
+  comments   MessageOfPost[] // relación 1:N con mensajes
+}
+
+model MessageOfPost {
+  commentId  Int       @id @default(autoincrement())
+  postId     Int
+  userId     Int
+  message    String
+  createdAt  DateTime  @default(now())
+
+  // Relaciones
+  post  BlogPost @relation(fields: [postId], references: [postId], onDelete: Cascade)
+  user  User     @relation(fields: [userId], references: [userId], onDelete: Cascade)
+}
