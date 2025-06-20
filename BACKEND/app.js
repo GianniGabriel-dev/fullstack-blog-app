@@ -13,11 +13,6 @@ app.use(passport.initialize());
 
 const PORT = process.env.PORT || 3000;
 
-app.get('/', (req,res)=>{
-    res.json({
-        message: "Welcome"
-    })
-})
 
 app.use('/', AuthRouter)
 app.use('/', postRouter)

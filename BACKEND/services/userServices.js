@@ -52,3 +52,22 @@ export const isUsernameTaken = async (username) => {
   return user != null // devuelve true si use existe y false si no
 }
 
+export const getPosts = async () => {
+  return await prisma.blogPost.findMany();
+};
+
+export const getComments = async (postId) => {
+  return await prisma.messageOfPost.findMany({
+    where: {
+      postId: postId,
+    },
+    include: {
+      user: {
+        select:{
+          username:true,
+        }
+      }
+    },
+  });
+};
+
