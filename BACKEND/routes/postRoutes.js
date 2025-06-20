@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createNewPost, getAllPosts } from "../controllers/postController.js";
+import { createNewPost, deletePost, getAllPosts, udpatePost } from "../controllers/postController.js";
 import passport from "passport";
 import { isAdmin } from "../services/adminServices.js";
 
@@ -12,3 +12,15 @@ postRouter.post (
     isAdmin,     //verifica si es admin, si lo es el next middleware se ejecuta y pasa al createNewPost
     createNewPost
 )
+postRouter.delete(
+  '/:postId/delete-post',
+  passport.authenticate('jwt', { session: false }), 
+  isAdmin,                                           
+  deletePost                                         
+);
+postRouter.put(
+  '/:postId/update-post',
+  passport.authenticate('jwt', { session: false }), 
+  isAdmin,                                           
+  udpatePost                                     
+);
