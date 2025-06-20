@@ -19,3 +19,7 @@ export const validateLogin = [
 
   body("password").notEmpty().withMessage("Please enter your password"),
 ];
+
+export const validateNewMessage = [
+  body("message").notEmpty().withMessage("A comment text is required"),
+];

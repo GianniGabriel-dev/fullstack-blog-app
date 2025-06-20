@@ -47,7 +47,7 @@ export const login = async (req, res) => {
     const payload = { id: user.userId, username: user.username, role: user.role }; //en payload se define lo que queremos que contenga el token
     // se crea el token firmando el payload con la clave secreta y un tiempo de expiración
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: "1h",
+      //expiresIn: "1h",
     });
 
     res.json({ token, message: "Login successful", user: { id: user.userId, username: user.username, role: user.role } });

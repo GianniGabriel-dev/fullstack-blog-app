@@ -12,6 +12,17 @@ export const createUser = async (username, userPassword) => {
   });
 };
 
+export const createComment = async (postId, userId, message)=>{
+
+  return await prisma.messageOfPost.create({
+    data: {
+      postId,
+      userId,
+      message
+    }
+  });
+}
+
 export const getUserByUsername = async (username) => {
   return await prisma.user.findUnique({
     where: {
@@ -40,3 +51,4 @@ export const isUsernameTaken = async (username) => {
   });
   return user != null // devuelve true si use existe y false si no
 }
+
