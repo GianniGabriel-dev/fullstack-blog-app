@@ -44,13 +44,13 @@ export const login = async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    const payload = { id: user.id, username: user.username }; //en payload se define lo que queremos que contenga el token
+    const payload = { id: user.userId, username: user.username, role: user.role }; //en payload se define lo que queremos que contenga el token
     // se crea el token firmando el payload con la clave secreta y un tiempo de expiración
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
 
-    res.json({ token, message: "Login successful", user: { id: user.userId, username: user.username } });
+    res.json({ token, message: "Login successful", user: { id: user.userId, username: user.username, role: user.role } });
   } catch (error) {
     res.status(500).json({ message: "Login failed"});
   }
