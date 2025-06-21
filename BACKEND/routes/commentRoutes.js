@@ -5,7 +5,7 @@ import { createNewComment, getAllComments } from "../controllers/commentControll
 
 export const commentRouter = Router();
 
-commentRouter.get('/:postId/comments', getAllComments)
+commentRouter.get('/post/:postId/comments', getAllComments)
 commentRouter.post (
     '/:postId/create-comment', 
     passport.authenticate('jwt', { session: false }), // verifica token
