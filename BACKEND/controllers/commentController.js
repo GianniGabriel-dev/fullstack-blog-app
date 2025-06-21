@@ -1,13 +1,18 @@
 import { validationResult } from 'express-validator';
-import { createComment, getComments } from '../services/userServices.js';
+import { createComment, getComments, getPostById } from '../services/userServices.js';
 
 export const getAllComments = async(req, res)=>{
     const postId = parseInt(req.params.postId, 10); // pasa de string a entero
     try{
         const comments = await getComments(postId)
-        return res.json(comments);
+        const blogPost= await getPostById(postId)
+        return res.json({
+            comments: comments,
+            post: blogPost
+        });
     }
     catch(error){
+        console.error(error)
         return res.status(500).json({message: "Error fetching comments"});
     }
 }

@@ -66,8 +66,19 @@ export const getComments = async (postId) => {
         select:{
           username:true,
         }
-      }
+      },
     },
+    orderBy: {
+      createdAt: 'desc'
+    }
   });
 };
+
+export const getPostById = async (postId)=>{
+  return await prisma.blogPost.findUnique({
+    where:{
+      postId
+    }
+  })
+}
 
