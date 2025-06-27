@@ -7,6 +7,7 @@ export const CommentsPage = () => {
   const { postId } = useParams();
   const [data, setData] = useState(null);
 
+
   useEffect(() => {
     const fetchdata = async () => {
       try {
@@ -25,16 +26,20 @@ export const CommentsPage = () => {
   }
 
   return (
-        <main>
-            <section className="post">
-                <div className="titleAndDate">
-                    <h2>{data.post.title}</h2>
-                    <p className="date">{new Date(data.post.createdAt).toLocaleString()}</p>
-                </div>
-                    <p>{data.post.messagePost}</p>
-            </section>
-            <section className="comments">
-                {data.comments.map((comment)=>(
+        <>
+          <section className="post" >
+            <div className="titleAndDate">
+              <h2>{data.post.title}</h2>
+              <p className="date">{new Date(data.post.createdAt).toLocaleString()}</p>
+            </div>
+            <p>{data.post.messagePost}</p>
+          </section>
+          <section className="comments">
+                <h3>Commments:</h3>
+                {data.comments.length === 0 ?(
+                  <p>No comments yet</p>
+                ):(
+                  data.comments.map((comment)=>(
                     <article className="comment" key={comment.commentId}>
                         <div className="userAndDate">
                             <p>{comment.user.username}</p>
@@ -42,8 +47,8 @@ export const CommentsPage = () => {
                         </div>
                         <p>{comment.message}</p>
                     </article>
-                ))}
-            </section>
-        </main>
+                )))}
+          </section>
+        </>
   );
 };
