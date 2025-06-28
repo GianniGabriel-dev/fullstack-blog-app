@@ -42,6 +42,7 @@ export const LoginPage = () => {
 
       if (res.ok) {
         localStorage.setItem("token", data.token); //almacena el token en el localeStorage para identificar al usuario en la pagina
+        localStorage.setItem("user", JSON.stringify(data.user)); //almacena el username en el localeStorage para identificar al usuario en la pagina
         navigate("/");
       } else {
         //si el server devuelve un array de errores, significa que el usario no existe, si en cambio delvuelve solo un mensaje significa que las creedenciales son incorrectas

@@ -9,7 +9,6 @@ import { AdminPage } from './pages/adminPage.jsx';
 
 function App() {
   return (
-    <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/admin" element={<AdminPage />} />
@@ -17,7 +16,6 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/post/:postId/comments" element={<CommentsPage />} />
       </Routes>
-    </BrowserRouter>
   );
 }
 export default App;
