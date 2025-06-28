@@ -1,4 +1,4 @@
-    export const validate = (formData) => {
+    export const validateSignup = (formData) => {
     const newErrors = {};
 
     if (!formData.username.trim()) {
@@ -19,4 +19,16 @@
     console.log(newErrors)
     return newErrors;
   };
+
+  export const validateLogin = (formData)=>{
+    const newErrors = {};
+
+    if (!formData.username.trim()) {
+      newErrors.username = "Username is requiered";
+    }
+    if (!formData.password){
+      newErrors.password = "Password is required"
+    }
+    return newErrors
+}
   

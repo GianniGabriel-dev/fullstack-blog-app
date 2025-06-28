@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { validate } from "../services/validations.js";
+import {validateSignup } from "../services/validations.js";
 import { useNavigate } from "react-router-dom";
 
 
@@ -19,7 +19,7 @@ export const SignUpPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const validationErrors = validate(formData); //validate se encarga de encontrarr errores en el fromulario y pasrar un objeto ocn los errores encontraddos
+    const validationErrors = validateSignup(formData); //validate se encarga de encontrarr errores en el fromulario y pasrar un objeto ocn los errores encontraddos
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
