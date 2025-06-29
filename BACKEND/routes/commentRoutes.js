@@ -7,7 +7,7 @@ export const commentRouter = Router();
 
 commentRouter.get('/post/:postId/comments', getAllComments)
 commentRouter.post (
-    '/:postId/create-comment', 
+    '/post/:postId/comments', 
     passport.authenticate('jwt', { session: false }), // verifica token
     validateNewMessage,
     createNewComment

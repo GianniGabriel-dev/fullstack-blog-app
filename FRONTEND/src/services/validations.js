@@ -31,4 +31,12 @@
     }
     return newErrors
 }
+
+export const validateComment = (comment)=>{
+  const error = {}
+  if (!comment.trim()) {
+    error.message = "A comment text is required";
+  }
+  return error
+}
   

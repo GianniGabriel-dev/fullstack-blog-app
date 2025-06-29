@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getPostById } from "../services/postService.js";
+import { WriteComment } from "../components/writeComment.jsx";
 
 export const CommentsPage = () => {
   const { postId } = useParams();
@@ -24,6 +25,7 @@ export const CommentsPage = () => {
     return <div>Loading...</div>;
   }
 
+  
   return (
     <>
       <div className="flex flex-col items-center gap-6">
@@ -38,6 +40,12 @@ export const CommentsPage = () => {
           </div>
           <p className="text-lg ">{data.post.messagePost}</p>
         </section>
+        <WriteComment addComment={(newComment) => {
+          setData(prev => ({
+            ...prev,
+            comments: [...prev.comments, newComment]
+          }));
+        }} />
         <section className="w-6xl p-6 bg-gray-800 border border-gray-700 rounded-lg shadow-sm">
           <h3 className="text-2xl font-semibold text-white mb-4">Comments:</h3>
           {data.comments.length === 0 ? (

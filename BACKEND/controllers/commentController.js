@@ -37,7 +37,6 @@ export const createNewComment = async (req, res)=>{
                 commentId: newMessage.commentId,
                 postId: newMessage.postId,
                 userId: newMessage.userId,
-                title: newMessage.title,
                 message: newMessage.message,
                 created_at: newMessage.createdAt,
             }
