@@ -7,7 +7,6 @@ export const CommentsPage = () => {
   const { postId } = useParams();
   const [data, setData] = useState(null);
 
-
   useEffect(() => {
     const fetchdata = async () => {
       try {
@@ -26,29 +25,43 @@ export const CommentsPage = () => {
   }
 
   return (
-        <>
-          <section className="post" >
-            <div className="titleAndDate">
-              <h2>{data.post.title}</h2>
-              <p className="date">{new Date(data.post.createdAt).toLocaleString()}</p>
-            </div>
-            <p>{data.post.messagePost}</p>
-          </section>
-          <section className="comments">
-                <h3>Commments:</h3>
-                {data.comments.length === 0 ?(
-                  <p>No comments yet</p>
-                ):(
-                  data.comments.map((comment)=>(
-                    <article className="comment" key={comment.commentId}>
-                        <div className="userAndDate">
-                            <p>{comment.user.username}</p>
-                            <p className="date">{new Date(comment.createdAt).toLocaleString()}</p>
-                        </div>
-                        <p>{comment.message}</p>
-                    </article>
-                )))}
-          </section>
-        </>
+    <>
+      <div className="flex flex-col items-center gap-6">
+        <section className="w-7xl mt-7  p-6 border rounded-lg shadow-sm bg-gray-800 border-gray-700 hover:bg-gray-700 hover:shadow-md transition">
+          <div className="flex justify-between mb-4 items-center ">
+            <h2 className="mb-2 text-3xl font-bold tracking-tight text-white">
+              {data.post.title}
+            </h2>
+            <p className="text-xl">
+              {new Date(data.post.createdAt).toLocaleString()}
+            </p>
+          </div>
+          <p className="text-lg ">{data.post.messagePost}</p>
+        </section>
+        <section className="w-6xl p-6 bg-gray-800 border border-gray-700 rounded-lg shadow-sm">
+          <h3 className="text-2xl font-semibold text-white mb-4">Comments:</h3>
+          {data.comments.length === 0 ? (
+            <p className="text-gray-400">No comments yet</p>
+          ) : (
+            data.comments.map((comment) => (
+              <article
+                className="mb-4 p-4 bg-gray-700 rounded-md border border-gray-600 hover:bg-gray-600 transition"
+                key={comment.commentId}
+              >
+                <div className="flex justify-between items-center mb-2">
+                  <p className="text-sm font-medium text-blue-300">
+                    {comment.user.username}
+                  </p>
+                  <p className="text-xs text-gray-400">
+                    {new Date(comment.createdAt).toLocaleString()}
+                  </p>
+                </div>
+                <p className="text-gray-200">{comment.message}</p>
+              </article>
+            ))
+          )}
+        </section>
+      </div>
+    </>
   );
 };
