@@ -25,10 +25,9 @@ export const CommentsPage = () => {
   }, [postId]);
 
   if (!data) {
-    return <Loading/>
+    return <Loading />;
   }
 
-  
   return (
     <>
       <div className="flex flex-col items-center gap-6">
@@ -42,16 +41,16 @@ export const CommentsPage = () => {
             </p>
           </div>
           <p className="text-lg ">{data.post.messagePost}</p>
-          {
-            token && (
-              <WriteComment addComment={(newComment) => {
-              setData(prev => ({
-                ...prev,
-                comments: [newComment, ...prev.comments, ] // aññade el nuevo comentario al principio del array y luego el resto de cometarioas
-              }));
-            }} />)
-          }
-
+          {token && (
+            <WriteComment
+              addComment={(newComment) => {
+                setData((prev) => ({
+                  ...prev,
+                  comments: [newComment, ...prev.comments], // añade el nuevo comentario al principio del array y luego el resto de cometarioas
+                }));
+              }}
+            />
+          )}
         </section>
 
         <section className="w-6xl p-6 bg-gray-800 border border-gray-700 rounded-lg shadow-sm">
