@@ -9,6 +9,8 @@ export const CommentsPage = () => {
   const { postId } = useParams();
   const [data, setData] = useState(null);
 
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
     const fetchdata = async () => {
       try {
@@ -40,12 +42,16 @@ export const CommentsPage = () => {
             </p>
           </div>
           <p className="text-lg ">{data.post.messagePost}</p>
-                  <WriteComment addComment={(newComment) => {
-          setData(prev => ({
-            ...prev,
-            comments: [newComment, ...prev.comments, ] // aññade el nuevo comentario al principio del array y luego el resto de cometarioas
-          }));
-        }} />
+          {
+            token && (
+              <WriteComment addComment={(newComment) => {
+              setData(prev => ({
+                ...prev,
+                comments: [newComment, ...prev.comments, ] // aññade el nuevo comentario al principio del array y luego el resto de cometarioas
+              }));
+            }} />)
+          }
+
         </section>
 
         <section className="w-6xl p-6 bg-gray-800 border border-gray-700 rounded-lg shadow-sm">

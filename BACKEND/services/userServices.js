@@ -53,7 +53,12 @@ export const isUsernameTaken = async (username) => {
 }
 
 export const getPosts = async () => {
-  return await prisma.blogPost.findMany();
+  return await prisma.blogPost.findMany({
+    orderBy: {
+      createdAt: 'desc'
+    }
+  });
+
 };
 
 export const getComments = async (postId) => {

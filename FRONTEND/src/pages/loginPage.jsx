@@ -23,7 +23,7 @@ export const LoginPage = () => {
       return;
     }
 
-    setErrors({});
+    setErrors({}); 
 
     try {
       const res = await fetch("http://localhost:3000/login", {

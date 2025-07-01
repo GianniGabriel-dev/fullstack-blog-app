@@ -39,4 +39,15 @@ export const validateComment = (comment)=>{
   }
   return error
 }
-  
+
+  export const validateCreatePost = (formData)=>{
+    const newErrors = {};
+
+    if (!formData.title.trim()) {
+      newErrors.title = "A title is requiered";
+    }
+    if (!formData.messagePost.trim()){
+      newErrors.messagePost = "A message is required"
+    }
+    return newErrors
+}
