@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { getAllPosts } from "../services/postService.js"
 import { useState, useEffect } from "react";
+import { Loading } from "../components/loading.jsx";
 
 export const HomePage = () => {
   const [posts, setPosts] = useState(null);
@@ -21,7 +22,7 @@ export const HomePage = () => {
   }, []);
 
   if (!posts) {
-    return <div>Loading...</div>;
+    return <Loading/>
   }
     return(
         <>

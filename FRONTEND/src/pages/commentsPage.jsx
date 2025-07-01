@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getPostById } from "../services/postService.js";
 import { WriteComment } from "../components/writeComment.jsx";
+import { Loading } from "../components/loading.jsx";
 
 export const CommentsPage = () => {
   const { postId } = useParams();
@@ -22,14 +23,14 @@ export const CommentsPage = () => {
   }, [postId]);
 
   if (!data) {
-    return <div>Loading...</div>;
+    return <Loading/>
   }
 
   
   return (
     <>
       <div className="flex flex-col items-center gap-6">
-        <section className="w-7xl mt-7  p-6 border rounded-lg shadow-sm bg-gray-800 border-gray-700 hover:bg-gray-700 hover:shadow-md transition">
+        <section className="w-7xl mt-7  p-6 border rounded-lg shadow-sm bg-gray-800 border-gray-700 ">
           <div className="flex justify-between mb-4 items-center ">
             <h2 className="mb-2 text-3xl font-bold tracking-tight text-white">
               {data.post.title}
@@ -39,13 +40,14 @@ export const CommentsPage = () => {
             </p>
           </div>
           <p className="text-lg ">{data.post.messagePost}</p>
-        </section>
-        <WriteComment addComment={(newComment) => {
+                  <WriteComment addComment={(newComment) => {
           setData(prev => ({
             ...prev,
-            comments: [...prev.comments, newComment]
+            comments: [newComment, ...prev.comments, ] // aññade el nuevo comentario al principio del array y luego el resto de cometarioas
           }));
         }} />
+        </section>
+
         <section className="w-6xl p-6 bg-gray-800 border border-gray-700 rounded-lg shadow-sm">
           <h3 className="text-2xl font-semibold text-white mb-4">Comments:</h3>
           {data.comments.length === 0 ? (

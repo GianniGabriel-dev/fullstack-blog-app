@@ -19,7 +19,7 @@ model BlogPost {
   postId     Int             @id @default(autoincrement())
   title      String         @db.VarChar(300)
   createdAt  DateTime        @default(now())
-  messagePost String
+  messagePost String        @db.Text
   comments   MessageOfPost[] // relación 1:N con mensajes
 }
 
@@ -27,7 +27,7 @@ model MessageOfPost {
   commentId  Int       @id @default(autoincrement())
   postId     Int
   userId     Int
-  message    String
+  message    String   @db.Text
   createdAt  DateTime  @default(now())
 
   // Relaciones
