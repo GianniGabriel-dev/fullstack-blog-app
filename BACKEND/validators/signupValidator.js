@@ -1,7 +1,6 @@
 import { body } from "express-validator";
 import { isUsernameTaken } from "../services/userServices.js";
 
-
 export const validateNewUser = [
   body("username")
     .notEmpty()

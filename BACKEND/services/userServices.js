@@ -1,27 +1,26 @@
-import {PrismaClient } from "@prisma/client";
-import bcrypt from 'bcrypt';
+import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcrypt";
 
-const  prisma = new PrismaClient();
+const prisma = new PrismaClient();
 
 export const createUser = async (username, userPassword) => {
   return await prisma.user.create({
     data: {
-        username,
-        userPassword
-    }
+      username,
+      userPassword,
+    },
   });
 };
 
-export const createComment = async (postId, userId, message)=>{
-
+export const createComment = async (postId, userId, message) => {
   return await prisma.messageOfPost.create({
     data: {
       postId,
       userId,
-      message
-    }
+      message,
+    },
   });
-}
+};
 
 export const getUserByUsername = async (username) => {
   return await prisma.user.findUnique({
@@ -29,15 +28,15 @@ export const getUserByUsername = async (username) => {
       username: username,
     },
   });
-}
+};
 
-export const getUserById = async (userId) =>{
+export const getUserById = async (userId) => {
   return await prisma.user.findUnique({
     where: {
-      userId
+      userId,
     },
   });
-}
+};
 
 export const validatePassword = async (user, inputPassword) => {
   return await bcrypt.compare(inputPassword, user.userPassword);
@@ -49,16 +48,15 @@ export const isUsernameTaken = async (username) => {
       username: username,
     },
   });
-  return user != null // devuelve true si use existe y false si no
-}
+  return user != null; // devuelve true si use existe y false si no
+};
 
 export const getPosts = async () => {
   return await prisma.blogPost.findMany({
     orderBy: {
-      createdAt: 'desc'
-    }
+      createdAt: "desc",
+    },
   });
-
 };
 
 export const getComments = async (postId) => {
@@ -68,22 +66,21 @@ export const getComments = async (postId) => {
     },
     include: {
       user: {
-        select:{
-          username:true,
-        }
+        select: {
+          username: true,
+        },
       },
     },
     orderBy: {
-      createdAt: 'desc'
-    }
+      createdAt: "desc",
+    },
   });
 };
 
-export const getPostById = async (postId)=>{
+export const getPostById = async (postId) => {
   return await prisma.blogPost.findUnique({
-    where:{
-      postId
-    }
-  })
-}
-
+    where: {
+      postId,
+    },
+  });
+};
