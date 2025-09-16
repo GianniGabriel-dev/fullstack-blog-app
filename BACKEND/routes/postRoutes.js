@@ -18,7 +18,7 @@ postRouter.post(
   createNewPost
 );
 postRouter.delete(
-  "/:postId/delete-post",
+  "/:postId/delete-post", 
   passport.authenticate("jwt", { session: false }),
   isAdmin,
   deletePost

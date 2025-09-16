@@ -30,7 +30,7 @@ export const CommentsPage = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center gap-6">
+      <div className="flex flex-col items-center gap-6 pb-9">
         <section className="w-7xl mt-7  p-6 border rounded-lg shadow-sm bg-gray-800 border-gray-700 ">
           <div className="flex justify-between mb-4 items-center ">
             <h2 className="mb-2 text-3xl font-bold tracking-tight text-white">
