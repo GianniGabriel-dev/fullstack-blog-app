@@ -33,7 +33,6 @@ export const createNewComment = async (req, res) => {
 
   try {
     const newMessage = await createComment(postId, userId, message);
-    console.log(newMessage);
     return res.json({
       message: "Comment Created",
       comment: {

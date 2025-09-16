@@ -11,7 +11,6 @@ export const CreateBlogPost = () => {
   });
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
-  console.log(isAdmin);
 
   useEffect(() => {
     if (!isAdmin) navigate("/"); //si no se es admin el usario er redirigido al inicio
@@ -40,8 +39,6 @@ export const CreateBlogPost = () => {
           messagePost: formData.messagePost,
         }),
       });
-      const data = await res.json();
-      console.log(data);
 
       if (res.ok) {
         navigate("/");

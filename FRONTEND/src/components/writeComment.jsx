@@ -34,11 +34,8 @@ export const WriteComment = ({ addComment }) => {
           message: comment,
         }),
       });
-      console.log(res);
-
+  
       const data = await res.json();
-
-      console.log(data);
 
       if (res.ok) {
         setComment("");

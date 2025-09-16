@@ -40,7 +40,6 @@ export const SignUpPage = () => {
       });
 
       const data = await res.json();
-      console.log(data);
 
       if (res.ok) {
         navigate("/login");

@@ -1,12 +1,11 @@
 import express from "express";
-import dotenv from "dotenv";
 import { AuthRouter } from "./routes/authRoutes.js";
 import { commentRouter } from "./routes/commentRoutes.js";
 import { postRouter } from "./routes/postRoutes.js";
 import passport from "passport";
 import cors from "cors";
 import "./config/passport.js";
-dotenv.config();
+
 
 const corsOptions = {
   origin: "http://localhost:5173", // solo este origen puede hacer peticiones

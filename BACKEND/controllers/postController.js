@@ -9,8 +9,10 @@ export const getAllPosts = async (req, res) => {
   try {
     const posts = await getPosts();
     return res.json(posts);
+    
   } catch (error) {
-    return res.status(500).json({ message: "Error fetching posts" });
+       console.error("Error en getAllPosts:", error);
+    return res.status(500).json({ message: "Error fetching posts", error: error.message });
   }
 };
 export const createNewPost = async (req, res) => {
